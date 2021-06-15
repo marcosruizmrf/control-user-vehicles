@@ -3,7 +3,6 @@ package com.zup.users.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +19,6 @@ import com.zup.users.services.VehicleService;
 
 @RestController
 @RequestMapping("/veiculos")
-@FeignClient(name = "precoVeiculo" , url = "https://parallelum.com.br/fipe/api/v1")
 public class VehicleController {
 	
 	@Autowired
@@ -31,8 +29,6 @@ public class VehicleController {
 	
 	@Autowired
 	private ApiFipe apiFipe;
-	
-	
 	
 	
 	@GetMapping(value = "/user/{idUser}")
@@ -50,11 +46,10 @@ public class VehicleController {
 	public Vehicle adicionar(@RequestBody Vehicle vehicle) {
 		return vehicleRepository.save(vehicle);
 	}
-	
 		
 	@GetMapping(value = "/{precoveiculo}")
 	
-	public Vehicle getVehicle() {
+	public List<Vehicle> getVehicle() {
 		return apiFipe.getVehicle();
 	}
 
