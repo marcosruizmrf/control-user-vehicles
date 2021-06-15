@@ -1,17 +1,13 @@
 package com.zup.users.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
@@ -21,7 +17,6 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idUser")	
 	private Long idUser;
 	
 	@Column(nullable = false, length = 50, unique=true)	
@@ -35,22 +30,19 @@ public class User implements Serializable {
 	
 	private Date data;
 	
-	@OneToMany(mappedBy = "idVehicle", cascade = CascadeType.ALL)
-	private List<Vehicle> vehicles = new ArrayList<>();
-	
+
 		
 	public User() {
 		super();
 	}
 		
-	public User(Long idUser, String nome, String email, Long cpf, Date data, List<Vehicle> vehicles) {
+	public User(Long idUser, String nome, String email, Long cpf, Date data) {
 		super();
 		this.idUser = idUser;
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
 		this.data = data;
-		this.vehicles = vehicles;
 	}
 
 
@@ -91,15 +83,6 @@ public class User implements Serializable {
 		this.data = data;
 	}
 	
-	public List<Vehicle> getVehicles() {
-		return vehicles;
-	}
-
-
-	public void setVehicles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}
-
 
 	@Override
 	public int hashCode() {

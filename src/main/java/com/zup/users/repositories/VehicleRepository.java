@@ -10,8 +10,7 @@ import com.zup.users.models.Vehicle;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
-	public Iterable<List<Vehicle>> findByIdContaining(Long idVehicle);
+	List findByIdUser(Long idUser);
 
-
-
+	
 }
